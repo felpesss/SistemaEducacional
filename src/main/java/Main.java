@@ -5,9 +5,9 @@ import Model.Aluno;
 import Model.Curso;
 import Model.Nota;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -42,8 +42,9 @@ public class Main {
                     System.out.print("Nome: "); String nome = scanner.nextLine();
                     System.out.print("CPF: "); String cpf = scanner.nextLine();
                     System.out.print("Email: "); String email = scanner.nextLine();
-                    System.out.print("Data Nascimento (YYYY-MM-DD): "); String data = scanner.nextLine();
-                    Aluno aluno = new Aluno(nome, cpf, email, data);
+                    System.out.print("Data Nascimento (YYYY-MM-DD): "); String dataStr = scanner.nextLine();
+                    LocalDate data = LocalDate.parse(dataStr); // converte String -> LocalDate
+                    Aluno aluno = new Aluno(null, nome, cpf, email, data); // RA null
                     int ra = alunoDao.cpfExiste(cpf) ? alunoDao.getRaByCpf(cpf) : alunoDao.inserirAluno(aluno);
                     System.out.println("Aluno inserido com RA: " + ra);
                     break;
@@ -59,7 +60,8 @@ public class Main {
                     System.out.print("Novo nome: "); String nomeUp = scanner.nextLine();
                     System.out.print("Novo CPF: "); String cpfUp = scanner.nextLine();
                     System.out.print("Novo Email: "); String emailUp = scanner.nextLine();
-                    System.out.print("Nova Data: "); String dataUp = scanner.nextLine();
+                    System.out.print("Nova Data (YYYY-MM-DD): "); String dataUpStr = scanner.nextLine();
+                    LocalDate dataUp = LocalDate.parse(dataUpStr);
                     alunoDao.atualizarAluno(raUp, nomeUp, cpfUp, emailUp, dataUp);
                     System.out.println("Aluno atualizado!");
                     break;
@@ -106,8 +108,9 @@ public class Main {
                     System.out.print("RA: "); int raN = scanner.nextInt();
                     System.out.print("ID Curso: "); int idN = scanner.nextInt();
                     System.out.print("Nota: "); double val = scanner.nextDouble(); scanner.nextLine();
-                    System.out.print("Data: "); String dN = scanner.nextLine();
-                    Nota nota = new Nota(raN, idN, val, dN);
+                    System.out.print("Data (YYYY-MM-DD): "); String dNStr = scanner.nextLine();
+                    LocalDate dN = LocalDate.parse(dNStr);
+                    Nota nota = new Nota(raN, idN, val, dN); // Nota agora espera LocalDate
                     if (!notaDao.existeNota(raN, idN)) notaDao.inserirNota(nota);
                     else System.out.println("Nota já existe!");
                     break;
