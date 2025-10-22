@@ -6,22 +6,28 @@ public class Aluno {
     private String email;
     private String telefone;
     private int idCurso;
+    private String cpf;
+    private String dataNascimento;
 
     // Construtor completo
-    public Aluno(int ra, String nome, String email, String telefone, int idCurso) {
+    public Aluno(int ra, String nome, String email, String telefone, int idCurso, String cpf, String dataNascimento) {
         this.ra = ra;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.idCurso = idCurso;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
     }
 
     // Construtor sem RA (para inserção)
-    public Aluno(String nome, String email, String telefone, int idCurso) {
+    public Aluno(String nome, String email, String telefone, int idCurso, String cpf, String dataNascimento) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.idCurso = idCurso;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
     }
 
     // Construtor vazio
@@ -42,4 +48,10 @@ public class Aluno {
 
     public int getIdCurso() { return idCurso; }
     public void setIdCurso(int idCurso) { this.idCurso = idCurso; }
+
+    public String getCpf() { return cpf; }
+    public void setCpf(String cpf) { this.cpf = cpf; }
+
+    public String getDataNascimento() { return dataNascimento; }
+    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
 }

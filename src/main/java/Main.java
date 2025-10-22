@@ -44,7 +44,11 @@ public class Main {
                     System.out.print("Email: "); String email = scanner.nextLine();
                     System.out.print("Data Nascimento (YYYY-MM-DD): "); String dataStr = scanner.nextLine();
                     LocalDate data = LocalDate.parse(dataStr); // converte String -> LocalDate
-                    Aluno aluno = new Aluno(null, nome, cpf, email, data); // RA null
+                    Aluno aluno = new Aluno();
+                    aluno.setNome(nome);
+                    aluno.setCpf(cpf);
+                    aluno.setEmail(email);
+                    aluno.setDataNascimento(data.toString()); // RA null
                     int ra = alunoDao.cpfExiste(cpf) ? alunoDao.getRaByCpf(cpf) : alunoDao.inserirAluno(aluno);
                     System.out.println("Aluno inserido com RA: " + ra);
                     break;
@@ -62,7 +66,7 @@ public class Main {
                     System.out.print("Novo Email: "); String emailUp = scanner.nextLine();
                     System.out.print("Nova Data (YYYY-MM-DD): "); String dataUpStr = scanner.nextLine();
                     LocalDate dataUp = LocalDate.parse(dataUpStr);
-                    alunoDao.atualizarAluno(raUp, nomeUp, cpfUp, emailUp, dataUp);
+                    alunoDao.atualizarAluno(raUp, nomeUp, cpfUp, emailUp, dataUp.toString());
                     System.out.println("Aluno atualizado!");
                     break;
 
@@ -110,7 +114,7 @@ public class Main {
                     System.out.print("Nota: "); double val = scanner.nextDouble(); scanner.nextLine();
                     System.out.print("Data (YYYY-MM-DD): "); String dNStr = scanner.nextLine();
                     LocalDate dN = LocalDate.parse(dNStr);
-                    Nota nota = new Nota(raN, idN, val, dN); // Nota agora espera LocalDate
+                    Nota nota = new Nota(raN, idN, val, dN.toString()); // Nota agora espera LocalDate
                     if (!notaDao.existeNota(raN, idN)) notaDao.inserirNota(nota);
                     else System.out.println("Nota já existe!");
                     break;
