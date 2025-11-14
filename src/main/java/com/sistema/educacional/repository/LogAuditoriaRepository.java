@@ -1,12 +1,9 @@
 package com.sistema.educacional.repository;
 
 import com.sistema.educacional.model.LogAuditoria;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-// mongo opcional - desabilitado por padrao
 @Repository
-@ConditionalOnProperty(name = "mongodb.enabled", havingValue = "true")
-public interface LogAuditoriaRepository extends MongoRepository<LogAuditoria, String> {
+public interface LogAuditoriaRepository extends JpaRepository<LogAuditoria, String> {
 }

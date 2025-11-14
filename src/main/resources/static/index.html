@@ -278,12 +278,27 @@
         
         // Carregar lista de alunos
         async function carregarAlunos() {
+            console.log('Iniciando carregamento de alunos...');
             try {
+                console.log('Fazendo requisição para:', `${API_URL}/alunos`);
                 const response = await fetch(`${API_URL}/alunos`);
+                console.log('Status da resposta:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const alunos = await response.json();
+                console.log('Alunos recebidos:', alunos);
+                console.log('Total de alunos:', alunos.length);
                 
                 const tbody = document.getElementById('alunosTableBody');
                 tbody.innerHTML = '';
+                
+                if (alunos.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">Nenhum aluno cadastrado</td></tr>';
+                    return;
+                }
                 
                 alunos.forEach(aluno => {
                     const tr = document.createElement('tr');
@@ -300,9 +315,11 @@
                     `;
                     tbody.appendChild(tr);
                 });
+                
+                console.log('Tabela atualizada com sucesso!');
             } catch (error) {
-                showAlert('Erro ao carregar alunos!', 'error');
-                console.error(error);
+                console.error('Erro detalhado:', error);
+                showAlert('Erro ao carregar alunos: ' + error.message, 'error');
             }
         }
         

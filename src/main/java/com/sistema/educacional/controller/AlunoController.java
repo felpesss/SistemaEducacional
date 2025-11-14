@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// api rest dos alunos
 @RestController
 @RequestMapping("/api/alunos")
 @CrossOrigin(origins = "*")
@@ -19,16 +18,14 @@ public class AlunoController {
     @Autowired
     private AlunoRepository alunoRepository;
     
-    @Autowired(required = false)
+    @Autowired
     private AuditoriaService auditoriaService;
     
-    // lista todos
     @GetMapping
     public List<Aluno> listarTodos() {
         return alunoRepository.findAll();
     }
     
-    // busca um
     @GetMapping("/{ra}")
     public ResponseEntity<Aluno> buscarPorRa(@PathVariable String ra) {
         return alunoRepository.findById(ra)
@@ -36,7 +33,6 @@ public class AlunoController {
             .orElse(ResponseEntity.notFound().build());
     }
     
-    // cria novo
     @PostMapping
     public ResponseEntity<Aluno> criar(@RequestBody Aluno aluno) {
         Aluno salvo = alunoRepository.save(aluno);
@@ -51,7 +47,6 @@ public class AlunoController {
         return ResponseEntity.ok(salvo);
     }
     
-    // atualiza
     @PutMapping("/{ra}")
     public ResponseEntity<Aluno> atualizar(@PathVariable String ra, @RequestBody Aluno aluno) {
         return alunoRepository.findById(ra)
@@ -71,7 +66,6 @@ public class AlunoController {
             .orElse(ResponseEntity.notFound().build());
     }
     
-    // deleta
     @DeleteMapping("/{ra}")
     public ResponseEntity<?> deletar(@PathVariable String ra) {
         return alunoRepository.findById(ra)

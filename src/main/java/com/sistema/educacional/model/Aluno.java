@@ -5,26 +5,26 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Aluno")
+@Table(name = "aluno")
 public class Aluno {
     
     @Id
-    @Column(name = "RA")
+    @Column(name = "ra")
     private String ra;
     
-    @Column(name = "Nome", nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
     
-    @Column(name = "CPF", nullable = false, unique = true)
+    @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
     
-    @Column(name = "Email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
     
-    @Column(name = "Telefone")
+    @Column(name = "telefone")
     private String telefone;
     
-    @Column(name = "DataNascimento", nullable = false)
+    @Column(name = "datanascimento", nullable = false)
     private LocalDate dataNascimento;
     
     @Column(name = "criado_em")
